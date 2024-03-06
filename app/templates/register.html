@@ -1,0 +1,39 @@
+<html>
+<head>
+    <style>
+        body{
+            background-color:orange;
+        }
+
+        #i{
+            border: 2px solid orange;
+            padding: 10px;
+            background-color: white;
+            margin-left: 40%;
+            width: 20%;
+            margin-top: 10%;
+            border-top-left-radius: 30%;
+            border-end-end-radius: 30%;
+         }
+
+    </style>
+</head>
+<body>
+<div id="i">
+<h3 style="text-align: center;">Register here</h3>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+    <div style="margin-left: 20%">
+        <p>{{ field.label }}: <br> {{ field }}</p> 
+        {% for error in field.errors %}
+           <small style="color: red">{{ error }}</small>
+        {% endfor %}
+    </div>
+{% endfor %}
+    <button type="submit" style="margin-left: 50%;background-color: orange;color: white;border: orange; padding:5px;padding-left: 10px;padding-right: 10px;border-radius: 45%;">Register</button>
+</form>
+</div>
+</body>
+</html>

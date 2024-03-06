@@ -1,0 +1,46 @@
+<html>
+<head>
+   {% load static %}
+   <style>
+      body{
+        background-image: url('/static/bg food.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+      }
+      #i{
+         margin-left: 48%;
+         margin-top: 10%;
+      }
+      #i2{
+         text-decoration: none;
+         border: 2px solid white;
+         padding:10px 10px 10px 10px;
+         border-radius: 45%;
+         color:grey;
+         background-color: whitesmoke;
+   }
+      #i2:hover{
+         background-color: skyblue;
+         color: white;
+      }
+
+   </style>
+</head>
+
+
+<body>
+ <div id="i"> 
+<h2>Welcome Back:)</h2>
+<p style="font-style: italic;color:palevioletred;">To keep connected with us please login with your personal information</p>
+<form action="" method="POST">
+    {% csrf_token %}
+{% for field in form %}
+   <p>{{ field.label }}: <br> {{ field }}</p>
+{% endfor %}
+   <button type="submit" style="border-radius:45%; font-size: 100%;background-color: skyblue;border: 2px solid skyblue;margin-left:35px;padding:10px 10px 10px 10px;color: white;"> Login</button>
+</form>
+<p>Don't have an account?<b><a href="{% url 'register' %}"id="i2">Signup here</a></b></p>
+</div> 
+</body>
+</html>

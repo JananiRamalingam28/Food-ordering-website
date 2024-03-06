@@ -1,0 +1,16 @@
+<html>
+    <head>
+        {% extends 'index.html' %}
+        {% load static %}
+        {% block mes %}
+    </head>
+    <body>
+        {% for item in products %}
+        <div class="card__data">
+            <h3 class="card__name">{{item.name}}</h3>
+            
+        </div>
+        {% endfor %}
+    </body>
+    {% endblock%}
+</html>

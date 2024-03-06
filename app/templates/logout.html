@@ -1,0 +1,69 @@
+
+
+<html>
+<head>
+    {% load static %}
+<style>
+    body{
+        background-color:black;
+    }
+    #i{
+        margin-left: 40%;
+        margin-top: 5%;
+    }
+
+    #i1{
+        color: white;
+        text-align: center;
+    }
+    #i2{
+        text-decoration: none;
+        border: 2px white;
+        font-size: 20px;
+        color:black;
+        padding-left:14px;
+        padding-right: 14px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-style: groove;
+        margin-left: 41.5%;
+        background-color:wheat;
+        
+        
+    }
+
+    #i2:hover{
+        background-color: wheat;
+        color:grey;
+    }
+
+    #i3{
+        text-decoration: none;
+        border: 2px white;
+        font-size: 20px;
+        color:black;
+        padding-left:14px;
+        padding-right: 14px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-style: groove;
+        margin-left: 1%;
+        background-color:wheat;
+
+    }
+    #i3:hover{
+        background-color: wheat;
+        color:grey;
+    }
+</style>
+
+</head>
+<body>
+<img src="{% static 'check1.jfif' %}" width="18%" height="30%" id="i">
+<h3 id="i1">You have been logged out</h3>
+<h4 id="i1">Thank you</h4><br>
+<a href="{% url 'login' %}" id="i2"> Login</a> 
+<a href="{% url 'base' %}" id="i3"> Back to home</a>
+</body>
+</html>
+

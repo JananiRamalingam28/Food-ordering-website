@@ -1,0 +1,110 @@
+<html>
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+    <style>
+      #p1{
+        
+          text-decoration: none;
+          color: white;
+         }
+
+    </style>
+  </head>
+<body>
+
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <img src="{% static  'zomato.jpg' %}" width="4%",height="4%" style="margin-left: 1%;border-radius: 50%;">
+   
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item active">
+          <a class="nav-link" href="/homi">Home</a>
+        </li>
+
+
+        <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"data-toggle="dropdown"aria-haspopup="true" aria-expanded="false" >cuisines</a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">
+            <div class="form-check">
+            <input type="radio" class="form-check-input" id="ra1" name="optradio"value="option1" checked>
+            <label class="form-check-label" for="ra1">South Indian</label>
+          </a>
+        </div>
+
+        <a class="dropdown-item" href="#">
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="ra2" name="optradio"value="option2">
+          <label class="form-check-label" for="ra2">North Indian</label>
+        </a>
+      </div>
+
+      <a class="dropdown-item" href="#">
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="ra3" name="optradio"value="option3" >
+        <label class="form-check-label" for="ra3">Chinese</label>
+      </a>
+    </div>
+  </div>   
+      </li>
+        <li class="nav-item active dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            sort
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">
+              <div class="form-check">
+              <input type="radio" class="form-check-input" id="radio1" name="optradio"value="option1" checked>
+              <label class="form-check-label" for="radio1">relavance</label>
+            </a>
+          </div>
+            <a class="dropdown-item" href="#">
+              <div class="form-check">
+                  <input type="radio" class="form-check-input" id="radio2" name="optradio"value="option2">
+                  <label class="form-check-label" for="radio2">Low to high</label>
+          </div>
+            <a class="dropdown-item" href="#">
+              <div class="form-check">
+                  <input type="radio" class="form-check-input" id="radio3" name="optradio"value="option3">
+                  <label class="form-check-label" for="radio3">high to low</label>
+            </a>
+          </div>
+            <a class="dropdown-item" href="#">
+              <div class="form-check">
+                  <input type="radio" class="form-check-input" id="radio4" name="optradio"value="option4">
+                  <label class="form-check-label" for="radio4">Rating:High to low</label>
+             </a></div>
+            </div>
+        </li>
+      </ul>
+     
+ 
+      <form class="d-flex" >
+        {% if user.is_authenticated %}
+        <li class="nav-item  "><a  class="nav-link bi bi-person-fill " href="#" style="margin-left: 30%;"id="p1"> {{user.username}}</a></li>
+        <li class="nav-item"><a  class="nav-link " href="{% url 'logout' %}" >Logout</a></li>
+        {% else %} 
+        <li class="nav-item"><a class="nav-link bi bi-person" href="login" id="p1">Login</a></li>
+      {% endif %}
+      </form> 
+
+   </div>
+  </nav>
+
+  {% block mes %}
+  {% endblock %}
+</body>
+  </html>
