@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+
 admin.site.register(Category)
 admin.site.register(Pro)
 admin.site.register(South)
@@ -17,5 +18,8 @@ admin.site.register(Moji)
 admin.site.register(Chaat)
 admin.site.register(Cha)
 
+admin.site.register(Datas)
+admin.site.register(Data)
+admin.site.register(Dat)
 
 # Register your models here.

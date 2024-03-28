@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from itertools import product
 import datetime
 import os
 
@@ -29,11 +31,12 @@ class Pro(models.Model):
     description=models.TextField(max_length=500,null=False,blank=False)
     status=models.BooleanField(default=False,help_text="0-show,1-Hidden")
     trending=models.BooleanField(default=False,help_text="0-default,1-Trending")
-    rating=models.FloatField(null=False,blank=False)
+    rating=models.IntegerField(null=False,blank=False)
     created_at=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
       return self.name
+
 
 
 class South(models.Model):
@@ -58,7 +61,7 @@ class Sou(models.Model):
     description=models.TextField(max_length=500,null=True,blank=True)
     status=models.BooleanField(default=False,help_text="0-show,1-Hidden")
     trending=models.BooleanField(default=False,help_text="0-default,1-Trending")
-    rating=models.FloatField(null=False,blank=False)
+    rating=models.IntegerField(null=False,blank=False)
     created_at=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -87,7 +90,7 @@ class Nor(models.Model):
     description=models.TextField(max_length=500,null=False,blank=False)
     status=models.BooleanField(default=False,help_text="0-show,1-Hidden")
     trending=models.BooleanField(default=False,help_text="0-default,1-Trending")
-    rating=models.FloatField(null=False,blank=False)
+    rating=models.IntegerField(null=False,blank=False)
     created_at=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -116,7 +119,7 @@ class Chin(models.Model):
     description=models.TextField(max_length=500,null=False,blank=False)
     status=models.BooleanField(default=False,help_text="0-show,1-Hidden")
     trending=models.BooleanField(default=False,help_text="0-default,1-Trending")
-    rating=models.FloatField(null=False,blank=False)
+    rating=models.IntegerField(null=False,blank=False)
     created_at=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -144,7 +147,7 @@ class Ital(models.Model):
     description=models.TextField(max_length=500,null=False,blank=False)
     status=models.BooleanField(default=False,help_text="0-show,1-Hidden")
     trending=models.BooleanField(default=False,help_text="0-default,1-Trending")
-    rating=models.FloatField(null=False,blank=False)
+    rating=models.IntegerField(null=False,blank=False)
     created_at=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -172,7 +175,7 @@ class Des(models.Model):
     description=models.TextField(max_length=500,null=False,blank=False)
     status=models.BooleanField(default=False,help_text="0-show,1-Hidden")
     trending=models.BooleanField(default=False,help_text="0-default,1-Trending")
-    rating=models.FloatField(null=False,blank=False)
+    rating=models.IntegerField(null=False,blank=False)
     created_at=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -200,7 +203,7 @@ class Moji(models.Model):
     description=models.TextField(max_length=500,null=False,blank=False)
     status=models.BooleanField(default=False,help_text="0-show,1-Hidden")
     trending=models.BooleanField(default=False,help_text="0-default,1-Trending")
-    rating=models.FloatField(null=False,blank=False)
+    rating=models.IntegerField(null=False,blank=False)
     created_at=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -234,8 +237,60 @@ class Cha(models.Model):
     def __str__(self):
       return self.name
   
+class Cart(models.Model):
+   user=models.ForeignKey(User,on_delete=models.CASCADE)
+   product=models.ForeignKey(Cha,on_delete=models.CASCADE)
+   product_qty=models.IntegerField(null=False,blank=False)
+
+   product=models.ForeignKey(Pro,on_delete=models.CASCADE)
+   product_qty=models.IntegerField(null=False,blank=False)
+
+   product=models.ForeignKey(Nor,on_delete=models.CASCADE)
+   product_qty=models.IntegerField(null=False,blank=False)
+
+   product=models.ForeignKey(Chin,on_delete=models.CASCADE)
+   product_qty=models.IntegerField(null=False,blank=False)
+
+   product=models.ForeignKey(Ital,on_delete=models.CASCADE)
+   product_qty=models.IntegerField(null=False,blank=False)
+
+   product=models.ForeignKey(Moji,on_delete=models.CASCADE)
+   product_qty=models.IntegerField(null=False,blank=False)
+
+   product=models.ForeignKey(Des,on_delete=models.CASCADE)
+   product_qty=models.IntegerField(null=False,blank=False)
+
+   product=models.ForeignKey(Sou,on_delete=models.CASCADE)
+   product_qty=models.IntegerField(null=False,blank=False)
+
+   created_at=models.DateTimeField(auto_now_add=True)
+
+   @property
+   def total_cost(self):
+    return self.product_qty*self.product.price
+   
+
+   
+class Favourite(models.Model):
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
+	product=models.ForeignKey(Pro,on_delete=models.CASCADE)
+ 
+ 
+created_at=models.DateTimeField(auto_now_add=True)
 
 
+
+
+class Datas(models.Model):
+   Message=models.CharField(max_length=30,default="")
+
+class Data(models.Model):
+   Photos=models.CharField(max_length=30,default="")
+
+class Dat(models.Model):
+   Issue=models.CharField(max_length=30,default="")
     
+
+
 
 # Create your models here.

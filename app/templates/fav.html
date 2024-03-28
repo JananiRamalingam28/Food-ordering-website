@@ -1,0 +1,60 @@
+<html>
+  {% extends 'index.html' %}
+    {% block mes %}
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <style>
+            table{
+        width:550px;
+        height:500px;
+        text-align: center;
+        border-collapse: separate;
+        
+      }
+
+        </style>
+    </head>
+    <body><br><br>
+
+        <section class="bg-light py-4 my-5" style="min-height:600px;">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <h4 class="mb-3">Favourite Item</h4>
+                  <hr style="border-color:#b8bfc2;">
+                </div>
+              
+                <table>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Unit</th>
+                        <th>Remove</th>
+                    </tr>
+                  
+        
+                    {% for item in fav %}
+                   <tr>
+                      <td><img src="{{item.product.product_image.url}}" height="75px" alt="{{item.product.name}}" style="background-color: rgb(215, 215, 37); width: 65%;border-radius: 30%;"></td>
+                      <td>{{item.product.name}}</td>
+                      <td>{{item.product.price | stringformat:'d'}}</td>
+                      <td><a href="{% url 'remove_fav' item.id %}"  onclick="return confirm('Are you sure? to Remove')"  class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Remove</a></td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                </table>
+               
+              </div>
+              </div>
+          </section>
+
+    </body>
+    {% endblock %}
+</html>

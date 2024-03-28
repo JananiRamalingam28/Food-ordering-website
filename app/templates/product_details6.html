@@ -1,0 +1,179 @@
+<html>
+    <head>
+        {% extends 'index.html' %}
+        {% load static %}
+        {% block mes %}
+        <meta charset="UTF-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     
+       
+
+    </head>
+    <style>
+   .pic-box{
+    position: relative;
+   } 
+   
+   
+   .hot{
+    background-color:orange;
+    color: white;
+    width: 100px;
+    font-weight: bold;
+    display: inline;
+    border-radius: 5px;
+    padding: 1px;
+    position: absolute;
+    top:0%;
+    right:30px ;
+    z-index: 10;
+    text-align: center;
+   } 
+
+#i{
+  background-color: wheat;
+  border-width:30% ;
+}
+@media screen and (max-width: 576px) {
+  .pr {
+    font-size: 0.9em;
+  }
+}
+
+
+    </style>
+    <body style="background-color: antiquewhite;">
+      <br><br><br><br><br>
+       
+       
+        <div class="container">
+          
+        <div class="col-12"style="position:absolute;">
+            <h5 >{{products}} Details</h5>
+            <hr style="border-color: #b8bfc2;">
+         </div><br><br>
+         <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'base' %}" style="text-decoration: none;">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'italian' products.category.name %}" style="text-decoration: none;" >Category</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{products}}</li>
+          </ol>
+        </nav>
+         <div class="row">
+         
+           <div class="col-4 my-3 pic-box">
+            {% if products.trending %}
+            <div class="hot"><h6>Best seller</h6></div>
+            {% endif %}
+            <img src="{{products.product_image.url}}" class="card-image-top" alt="products" width="85%" height="85%">
+           </div>
+           <div class="col-5 my-3" style="line-height: 2.5rem;">
+            <h5><b>{{products | upper}}</b></h5>
+            <h6 style="color: grey;">Vendor:{{products.vendor}}</h6>
+            <div class="stars"style="color:green">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              
+              <span>({{products.rating}} ratings )</span>
+            </div>
+            <h6 style="color: grey;">{{products.description}}</h6>
+             <h4 style="color: green;"><i class="fa-solid fa-indian-rupee-sign"></i>{{products.price}}</h4>
+             <div class="my-3">
+              {% if products.quantity > 0 %}
+              <input type="hidden" value="{{products.id}}" id="pid">
+            
+              <p>
+                <div class="input-group" style="width: 150px;">
+                  <button class="input-group-text bg-success text-light" id="btnMinus"><i class="fas fa-minus"></i></button>
+                  <input type="text" name="qty" id="txtQty" value="1" class="form-control text-center">
+                  <button class="input-group-text bg-success text-light" id="btnPlus"><i class="fa fa-plus"></i></button>
+                </div>
+              </p>
+
+               <button class="btn btn-primary" id="btnCart"><i class="fas fa-shopping-cart"></i>Add to Cart</button>
+               {% else %}
+               <button class="btn btn-secondary"><i class="fas fa-minus"></i> Out of Stock</button>
+               {% endif %}
+               <button class="btn btn-danger"><i class="fa fa-heart"></i></button><br>
+               <a href="/buy" style="text-decoration: none;padding-left: 50px;padding-right:50px;padding-top:3.5px;padding-bottom: 10px;  border-radius:60px;border: 2px solid;background-color:brown;color: white;"> Buy now</a>
+            </div>
+           </div>
+    </div> 
+    
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event){
+        const btnPlus = document.getElementById("btnPlus");
+        const btnMinus=document.getElementById("btnMinus");
+        const txtQty=document.getElementById("txtQty");
+        const pid = document.getElementById("pid");
+        const btnCart=document.getElementById("btnCart");
+
+        btnPlus.addEventListener("click",function(){
+          let qty=parseInt(txtQty.value,10);
+          qty=isNaN(qty)?0:qty;
+          //console.log(qty);
+          if(qty<10){
+            qty++;
+            txtQty.value=qty;
+          }
+        });
+
+        btnMinus.addEventListener("click",function(){
+          let qty=parseInt(txtQty.value,10);
+          qty=isNaN(qty)?0:qty;
+          //console.log(qty);
+          if(qty>1){
+            qty--;
+            txtQty.value=qty;
+          }
+        });
+
+        btnCart.addEventListener("click",function(){
+          let qty=parseInt(txtQty.value,10);
+          qty=isNaN(qty)?0:qty;
+          
+          if(qty>0){
+            let postObj={
+              'product_qty': qty,
+              'pid': pid.value
+              
+            }
+            //console.log(postObj);
+            fetch("/addtocart" ,{
+              method: 'POST' ,
+              credentials: 'same-origin',
+              headers:{
+                'Accept':'application/json',
+                'X-Requested-With':'XMLHttpRequest',
+                'X-CSRFToken':'{{ csrf_token }}'
+              },
+              body:JSON.stringify(postObj)
+            }).then(response =>{
+              return response.json();
+            }).then(data =>{
+              //console.log(data);
+              alert(data['status']);
+            });
+          }
+          else{
+            alert("Please Enter The Quantity");
+          }
+        });
+
+
+      });
+
+      
+    </script>
+    </body>
+    {% endblock%}
+</html>

@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
     <style>
       #p1{
@@ -14,12 +15,168 @@
           text-decoration: none;
           color: white;
          }
+    .navbar{
+    position:fixed;
+    width:100%;
+    z-index: 1000000;
+    top:0;
+
+}
+
+
+
+
+
+
+
+.footer-distributed{
+	background: #666;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: bold 16px sans-serif;
+	padding: 55px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left{
+	width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3{
+	color:  #ffffff;
+	font: normal 36px 'Open Sans', cursive;
+	margin: 0;
+}
+
+.footer-distributed h4 span{
+	color:lightseagreen;
+	font-size: 100%;
+	border: 2px solid;
+	background-color: #D3D3D3;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 20px;
+	padding-left: 20px;
+
+	border-radius: 80px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	background-color: lightseagreen;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-right: 3px;
+	margin-bottom: 5px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	}
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;
+		width: 100%;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+	.footer-distributed .footer-center i{
+		margin-left: 0;
+	}
+
+}
+
+.accordion{
+	
+	width:600px;
+}
+
+.accordion li{
+	list-style: none;
+	width: 100%;
+	margin: 20px;
+	padding: 10px;
+	border-radius: 8px;
+	background-color: #e3edf7;
+	box-shadow: 6px 6px 10px -1px rgba(0,0,0,0.15),
+	             -6px -6px 10px -1px rgba(200,200,200,0.7);
+}
+
+.accordion li label{
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	font-size: 18px;
+	font-weight: 500;
+	cursor:pointer;
+
+}
+label::before{
+	content: '+';
+	margin-right: 10px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+input[type="radio"]{
+	display: none;
+}
+
+.accordion .content{
+	color: #555;
+	padding: 0 10px;
+	line-height: 26px;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s,padding 0.5s;a
+}
+
+.accordion input[type="radio"]:checked + label + .content{
+	max-height: 400px;
+	padding: 10px 10px 20px;
+}
+
+.accordion input[type="radio"]:checked + label::before{
+	content: '-';
+}
 
     </style>
   </head>
 <body>
 
-<nav class="navbar navbar-expand navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top ">
   <img src="{% static  'zomato.jpg' %}" width="4%",height="4%" style="margin-left: 1%;border-radius: 50%;">
    
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,64 +187,17 @@
       <ul class="navbar-nav mr-auto">
 
         <li class="nav-item active">
-          <a class="nav-link" href="/homi">Home</a>
+          <a class="nav-link" href="/homi"><i class="fa fa-home"></i> Home</a>
         </li>
 
 
-        <li class="nav-item active dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"data-toggle="dropdown"aria-haspopup="true" aria-expanded="false" >cuisines</a>
-
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">
-            <div class="form-check">
-            <input type="radio" class="form-check-input" id="ra1" name="optradio"value="option1" checked>
-            <label class="form-check-label" for="ra1">South Indian</label>
-          </a>
-        </div>
-
-        <a class="dropdown-item" href="#">
-        <div class="form-check">
-          <input type="radio" class="form-check-input" id="ra2" name="optradio"value="option2">
-          <label class="form-check-label" for="ra2">North Indian</label>
-        </a>
-      </div>
-
-      <a class="dropdown-item" href="#">
-      <div class="form-check">
-        <input type="radio" class="form-check-input" id="ra3" name="optradio"value="option3" >
-        <label class="form-check-label" for="ra3">Chinese</label>
-      </a>
-    </div>
-  </div>   
-      </li>
-        <li class="nav-item active dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            sort
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">
-              <div class="form-check">
-              <input type="radio" class="form-check-input" id="radio1" name="optradio"value="option1" checked>
-              <label class="form-check-label" for="radio1">relavance</label>
-            </a>
-          </div>
-            <a class="dropdown-item" href="#">
-              <div class="form-check">
-                  <input type="radio" class="form-check-input" id="radio2" name="optradio"value="option2">
-                  <label class="form-check-label" for="radio2">Low to high</label>
-          </div>
-            <a class="dropdown-item" href="#">
-              <div class="form-check">
-                  <input type="radio" class="form-check-input" id="radio3" name="optradio"value="option3">
-                  <label class="form-check-label" for="radio3">high to low</label>
-            </a>
-          </div>
-            <a class="dropdown-item" href="#">
-              <div class="form-check">
-                  <input type="radio" class="form-check-input" id="radio4" name="optradio"value="option4">
-                  <label class="form-check-label" for="radio4">Rating:High to low</label>
-             </a></div>
-            </div>
+        
+        <li class="nav-item active">
+          <a class="nav-link" href="/cart"><i class="fa fa-shopping-cart"></i> Cart</a>
+        </li>
+        
+        <li class="nav-item active">
+          <a class="nav-link" href="/favviewpage"><i class="fa fa-heart"></i> Favorite</a>
         </li>
       </ul>
      
@@ -106,5 +216,81 @@
 
   {% block mes %}
   {% endblock %}
+  <br><br><br><br><br><br><br><br>   
+  <footer class="footer-distributed">
+    
+    <div class="footer-left">
+
+        <h4><span>Carbon and Plastic Neutral Deliveries <i class="fa-solid fa-circle-arrow-right" style="border-radius: 80%;"></i></span></h4>
+        <img src="{% static 'bike.png' %}" width="9%" height="7%" style="border-radius: 50%;margin-left: 85%; margin-top: -8%;"><br><br><br>
+        <ul style="color:gray;margin-left: -5%;">
+         <li><h5> Menu items,nutritional inforation and prices are set directlly by the restaurant.</h5></li>
+<li><h5>Nutritional information values displayed are indicative, per serving and may vary depending on the ingredients,portion size and customizations.</h5></li>
+        <li> <h5>An average active adult requires 2,000 kcal energy per day, however, calorie needs may vary. </h5></li>
+   
+       </ul>
+        <p style="color: lightseagreen;">Lic.No.12415003000611</p>
+
+    </div>
+
+   
+      <div class="footer-center" style="margin-left: 5%;">
+      <h2 style="margin-left: 10%;color: #C0C0C0;">Report an issue with the <span style="color: lightseagreen;">Menu</span></h2>
+        <ul class="accordion" style="text-decoration: none;">
+<li>
+  <input type="radio" name="accordion" id="first" checked>
+  <label for="first"style="font-weight:bold;">Items are missing in the menu</label>
+
+  <div class="content">
+    <br>
+    <form action="addData" method="POST" autocomplete="off">
+      {% csrf_token %}
+     <h5 style="margin-top:-7%;">Please tell us what is missing</h5><br>
+     <div>
+        <textarea required="required" placeholder="Start typing here...." name="Message" style="margin-top:-2%;border-radius:80px;"></textarea><br>
+  </div><br>
+  <input type="submit" style="background-color:lightcoral;color: white;padding-left: 10%;padding-right: 10%;padding-top: 5px;padding-bottom:5px;border-radius: 10px;">
+    </form>
+  </div>
+</li>
+
+<li>
+  <input type="radio" name="accordion" id="second">
+  <label for="second"style="font-weight:bold;">Inaccurate photos/descriptions</label>
+
+  <div class="content">
+    <form action="addD" method="POST" autocomplete="off">
+      {% csrf_token %}
+    <h5 style="margin-top: -2%;">Share more details about the issue</h5><br>
+    <div>
+      <textarea required="required" placeholder="  Start typing here...." name="Photos"style="margin-top:-2%;border-radius:80px;"></textarea><br><br>
+     
+    </div>
+    <input type="submit" style="background-color:lightcoral;color: white;padding-left: 10%;padding-right: 10%;padding-top: 5px;padding-bottom:5px;border-radius: 10px;">
+  </form>
+  </div>
+</li>
+
+<li>
+  <input type="radio" name="accordion" id="third">
+  <label for="third" style="font-weight:bold;">I have some other issue</label>
+  <div class="content">
+    <form action="add" method="POST" autocomplete="off">
+      {% csrf_token %}
+    <h5 style="margin-top: -2%;">Please share more details about the issue</h5><br>
+    <div>
+      <textarea required="required" placeholder="  Start typing here...." name="Issue"style="margin-top:-2%;border-radius:80px;"></textarea><br><br>
+      
+    </div>
+    <input type="submit" style="background-color:lightcoral;color: white;padding-left: 10%;padding-right: 10%;padding-top: 5px;padding-bottom:5px;border-radius: 10px;">
+  </form>
+  </div>
+</li>
+</ul>
+       
+
+    </div>
+
+</footer>
 </body>
   </html>

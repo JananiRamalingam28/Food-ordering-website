@@ -1,0 +1,228 @@
+<html>
+    <head>
+        {% extends 'index.html' %}
+        {% load static %}
+        {% block mes %}
+        <meta charset="UTF-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     
+        <script src="js1/script.js" defer></script>
+
+    </head>
+    <style>
+.productcard {
+  max-width: 12em;
+  height: 18em;
+  background-color:whitesmoke;
+  padding: 1em;
+  box-shadow: 0 5px 5px #e1e1e1;
+  font-family: Arial, Helvetica, sans-serif;
+ 
+}
+.productcard img {
+  max-width: 100%;
+ 
+}
+.productcard h4 {
+  font-size: 1.3em;
+  margin: 0.5em 0;
+  font-weight: bold;
+}
+.productcard div {
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.productcard button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.productcard:hover {
+  background-color: lightslategray;
+  color: #fff;
+}
+.productcard:hover button {
+  color: #000;
+  background-color: #fff;
+}
+@media screen and (max-width: 576px) {
+  .productcard {
+    font-size: 0.9em;
+  }
+}
+
+
+.products-preview{
+   position: fixed;
+   top:0; left:0;
+   min-height: 100vh;
+   width: 100%;
+   background: rgba(0,0,0,.8);
+   display: none;
+   align-items: center;
+   justify-content: center;
+}
+
+.products-preview .preview{
+   display: none;
+   padding:2rem;
+   text-align: center;
+   background-color:wheat;
+   position: relative;
+   margin:2rem;
+   width: 25rem;
+
+}
+
+.products-preview .preview.active{
+   display: inline-block;
+}
+
+.products-preview .preview img{
+   height: 10rem;
+}
+
+.products-preview .preview .fa-times{
+   position: absolute;
+   top:1rem; right:1.5rem;
+   cursor: pointer;
+   color:#444;
+   font-size: 2rem;
+}
+
+.products-preview .preview .fa-times:hover{
+   transform: rotate(90deg);
+  
+}
+
+.products-preview .preview h6{
+   color:#444;
+   padding:.5rem 0;
+   
+}
+
+.products-preview .preview .stars{
+   padding:1rem 0;
+   font-size: 1rem;
+}
+
+.products-preview .preview .stars i{
+   color:#27ae60;
+}
+
+.products-preview .preview .stars span{
+   color:#999;
+}
+
+.products-preview .preview p{
+   line-height: 1.5;
+   
+   font-size: 1rem;
+   color:#777;
+}
+
+.products-preview .preview .price{
+   
+   font-size: 2rem;
+   color:#27ae60;
+}
+
+.products-preview .preview .buttons{
+   display: flex;
+   gap:1.5rem;
+   flex-wrap: wrap;
+   margin-top: 1rem;
+}
+
+.products-preview .preview .buttons a{
+
+ 
+   font-size: 1rem;
+   color:#444;
+   padding: 10px;
+   border:.1rem solid #444;
+   text-decoration: none;
+}
+
+.products-preview .preview .buttons a.cart{
+   background: #444;
+   color:#fff;
+  
+}
+.products-preview .preview .buttons a.buy{
+   margin-left: 25%;
+}
+
+.products-preview .preview .buttons a.cart:hover{
+   background: #111;
+}
+
+.products-preview .preview .buttons a.buy:hover{
+   background: #444;
+   color:#fff;
+}
+
+
+
+    </style>
+    <body>
+      <br><br><br><br><br>
+       
+       
+        <div class="container">
+         <div class="col-12"style="position:absolute;">
+            <h4 >{{category_name}}</h4>
+            <hr style="border-color: #b8bfc2;">
+         </div><br><br><br>
+         <nav aria-label="breadcrumb">
+            <ol class="breadcrumb"style="font-weight: bold;">
+              <li class="breadcrumb-item"><a href="{% url 'base' %}" style="text-decoration: none;color: orangered;">Home</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'chaat' %}" style="text-decoration:none;">chaat_crunchies</a></li>
+              
+              <li class="breadcrumb-item active" aria-current="page">{{category_name}} </li>
+            </ol>
+          </nav>
+        
+            <div class="row">
+               {% for item in products %}
+            <div class="col-lg-3">
+               
+          <div class="productcard">
+            
+             <img src="{{item.product_image.url}}" alt="image" style="background-color: lightgray;">
+             <a href="{% url 'product_details7' category_name item.name %}"style="text-decoration-line:none;color:black">
+             
+             <h4>{{item.name}}</h4>
+             <p>{{item.description}}</p>
+             <div>
+                 <span><i class="fa-solid fa-indian-rupee-sign"></i>{{item.price}}</span>
+                 <button>+</button>
+                
+             </div>
+            </a>
+            </div>
+           </div><br><br><br><br><br><br><br><br><br><br><br><br><br>
+           
+           {% endfor %}
+      </div>
+      
+      </div>
+  
+     
+    </body>
+    {% endblock%}
+</html>

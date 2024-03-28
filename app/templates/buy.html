@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/c08eb42585.js " crossorigin="anonymous"></script>
+        {% extends 'index.html' %}
+        {% load static %}
+        {% block mes %}
+        <meta charset="UTF-8">
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+     
+        <style>
+            #h{
+            margin-left: 45%;
+            border:whitesmoke;
+            border-width: 10px;
+            border-radius: 10px;
+            border-style:inset;
+        }
+        #h1{
+            
+            border:whitesmoke;
+            border-width: 5px;
+            border-radius: 5px;
+            border-style:groove;
+        }
+        ::placeholder
+        {
+            color:black;
+        }
+
+        #h2{
+            margin-left: 36.5%;
+            color: whitesmoke;
+        }
+
+        </style>
+    </head><br><br><br><br>
+    <body>
+        <body style="background-color: gray;">
+            <form>
+            <h1 style="color:whitesmoke;text-align:center;"></h1>
+            <img src="{% static 'contact.jpg' %}" width="80" height="80" id="h"><br><br><br>
+           
+    
+            <i class="fa fa-user-o" id="h2"></i>
+            <input type="text" placeholder="Name" name="user" style="margin-left: 1.5%; width: 21.9%;" id="h1"><br><br>
+    
+            <i class="fa fa-envelope-o " style="font-size: 18px;" id="h2"></i>
+            <input type="text" placeholder="Email"name="email" style="margin-left: 1.5%; width:21.9%" id="h1" ><br><br>
+    
+            <i class="fa-solid fa-phone" id="h2"></i>
+            <input type="text" placeholder="Tel.Number" name="contact"style="margin-left: 1.5%; width:21.9%" id="h1" ><br><br>
+    
+            <i class="fa-solid fa-location-dot" id="h2"></i>
+            <input type="text" placeholder="Address" name="password" style="margin-left: 1.5%; width:21.9%" id="h1" ><br><br>
+    
+            <i class="fa-solid fa-wallet" id="h2"></i>
+            <input type="text" placeholder="COD/Credit/UPI"name="cpass" style="margin-left: 1.5%; width:21.9%" id="h1" ><br><br>
+    
+            <input type="submit" value="Submit" style="margin-left: 48%;font-size: 110%; " id="h1"> 
+        </form>
+        {% endblock %}
+    </body>
+</html>

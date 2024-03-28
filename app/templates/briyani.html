@@ -19,7 +19,16 @@
       <link rel="stylesheet" href="css/style.css">
        
     </head>
-  <body>
+    
+  <body><br><br><br><br><br>
+    <div class="container-fluid">
+      <nav aria-label="breadcrumb">
+         <ol class="breadcrumb" style="background-color:whitesmoke;font-weight: bold;">
+           <li class="breadcrumb-item"><a href="{% url 'base' %}" style="text-decoration: none;color: orangered;">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Briyani_hotels</li>
+           
+         </ol>
+       </nav>
    
       
 
@@ -27,6 +36,7 @@
         <div class="card__container swiper">
            <div class="card__content">
               <div class="swiper-wrapper">
+              
                {% for item in category %}
                  <article class="card__article swiper-slide">
                     <div class="card__image">
@@ -61,7 +71,7 @@
            <div class="swiper-pagination"></div>
         </div>
      </section>
-   
+   </div>
      
      <!--=============== SWIPER JS ===============-->
      <script src="js/swiper-bundle.min.js"></script>
